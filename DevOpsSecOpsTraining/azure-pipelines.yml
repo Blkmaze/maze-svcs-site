@@ -1,0 +1,31 @@
+trigger:
+  branches:
+    include:
+      - master
+
+pool:
+  name: Default
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: '🧪 Install Node.js'
+
+- script: npm install
+  displayName: '📦 Install dependencies'
+  workingDirectory: DevOpsSecOpsTraining/node-vuln-demo
+
+- script: npm test
+  displayName: '✅ Run tests'
+  workingDirectory: DevOpsSecOpsTraining/node-vuln-demo
+
+- script: npm install -g snyk
+  displayName: '🔐 Install Snyk'
+
+- script: snyk auth $(SNYK_TOKEN)
+  displayName: '🔐 Authenticate Snyk'
+
+- script: snyk test
+  displayName: '🚨 Run Snyk scan'
+  workingDirectory: DevOpsSecOpsTraining/node-vuln-demo
