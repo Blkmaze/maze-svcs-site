@@ -1,4 +1,4 @@
-name: Node.js CI/CD with Snyk and Deploy
+name: Node.js CI/CD with Snyk and Azure Deploy
 
 on:
   push:
@@ -8,7 +8,6 @@ on:
 
 jobs:
   build-and-secure:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -22,9 +21,11 @@ jobs:
 
     - name: 📦 Install dependencies
       run: npm install
+      working-directory: DevOpsSecOpsTraining/node-vuln-demo
 
     - name: ✅ Run Tests
       run: npm test
+      working-directory: DevOpsSecOpsTraining/node-vuln-demo
 
     - name: 🔐 Install Snyk
       run: npm install -g snyk
@@ -34,6 +35,15 @@ jobs:
 
     - name: 🚨 Run Snyk vulnerability scan
       run: snyk test
+      working-directory: DevOpsSecOpsTraining/node-vuln-demo
 
     - name: 📊 Monitor with Snyk
       run: snyk monitor
+      working-directory: DevOpsSecOpsTraining/node-vuln-demo
+
+    - name: 🚀 Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: nodeapp-deploy-WM
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: DevOpsSecOpsTraining/node-vuln-demo
