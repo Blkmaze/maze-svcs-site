@@ -14,5 +14,7 @@
   },
   "devDependencies": {
     "mocha": "^11.1.0"
+"author": "JT",
+
   }
 }
