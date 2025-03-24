@@ -1,20 +1,6 @@
-{
-  "name": "vuln-demo",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"All tests passed!\" && exit 0"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "express": "^4.21.2"
-  },
-  "devDependencies": {
-    "mocha": "^11.1.0"
+"devDependencies": {
+  "mocha": "^11.1.0"
+},
 "author": "JT",
-
-  }
+"license": "ISC"
 }
