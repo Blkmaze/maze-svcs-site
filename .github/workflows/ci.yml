@@ -34,3 +34,6 @@ jobs:
 
     - name: 🚨 Run Snyk vulnerability scan
       run: snyk test
+
+    - name: 📊 Monitor with Snyk
+      run: snyk monitor
