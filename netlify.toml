@@ -1,2 +1,3 @@
 [build]
+  command = ""    # ← explicitly empty
   publish = "."
